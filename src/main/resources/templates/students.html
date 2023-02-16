@@ -52,8 +52,7 @@
             <td th:text = "${student.email}"></td>
             <td>
                 <a th:href = "@{/students/edit/{id}(id = ${student.id})}"
-                class="btn btn-primary">Update</a>
-
+                class="btn btn-primary">Update</a> <!--Here after / we are defining the attribute in {} whose value we want to use in path variable-->
                 <a th:href = "@{/students/{id}(id = ${student.id})}"
                    class="btn btn-danger">Delete</a>
             </td>

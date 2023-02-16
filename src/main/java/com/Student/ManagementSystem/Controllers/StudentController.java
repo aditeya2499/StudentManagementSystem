@@ -2,7 +2,6 @@ package com.Student.ManagementSystem.Controllers;
 
 import com.Student.ManagementSystem.Entity.Student;
 import com.Student.ManagementSystem.Service.StudentService;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +36,11 @@ public class StudentController {
         return "create_student";
     }
 
+    /*
+    The @ModelAttribute annotation binds a method parameter or method return
+    value to a named model attribute and then exposes it to a web view. Here we are getting "student"
+    object from create students.html file, and now we are binding it to use and save it.
+    */
     @PostMapping("/students")
     public String saveStudent(@ModelAttribute("student") Student student) {
         studentService.saveStudent(student);
@@ -45,9 +49,14 @@ public class StudentController {
 
 
     //Updating a student
+    /*
+    @PathVariable annotation can be used to handle template variables in the request
+    URI mapping, and set them as method parameters.
+    */
     @GetMapping("/students/edit/{id}")
     public String editStudent(@PathVariable Long id, Model model) {
-        model.addAttribute("student",studentService.getStudentById(id));
+        model.addAttribute("student",studentService.getStudentById(id));// here we are first getting the student by id and then storing that data
+        // in attributeName of "student" which will be used inside edit_student.html
         return "edit_student";
     }
 
